@@ -63,10 +63,16 @@ def main():
                 sum_mv[0] += tpl[0]  # 横方向移動量
                 sum_mv[1] += tpl[1]  # 縦方向移動量
         kk_rct.move_ip(sum_mv)
-        check_bound()
+        if check_bound(kk_rct) != (True,True):# どこかしらはみ出てる
+            kk_rct.move_ip(-sum_mv[0],-sum_mv[1])# 先ほどの動きをキャンセル
         screen.blit(kk_img, kk_rct)
 
         bb_rct.move_ip(vx, vy)  # 練習2：爆弾動く
+        yoko,tate=check_bound(bb_rct)
+        if not yoko:
+            vx*=-1
+        if not tate:
+            vy*=-1
         screen.blit(bb_img, bb_rct)  # 練習2：爆弾表示
         pg.display.update()
         tmr += 1
