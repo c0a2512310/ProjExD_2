@@ -13,6 +13,7 @@ DELTA = {
 }
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
+
 def check_bound(rect:pg.Rect)->tuple[bool,bool]:
     """
     引数：こうかとんRect or 爆弾Rect
@@ -30,6 +31,7 @@ def gameover(screen: pg.Surface) -> None:
     width, height = 1100, 600
     width2, height2 = 700, 600
     width3, height3 = 1500, 600
+
     gmover = pg.Surface((WIDTH, HEIGHT))
     pg.draw.rect(gmover, (0, 0, 0), (0, 0, WIDTH, HEIGHT))
     gmover.set_alpha(255)
@@ -37,9 +39,11 @@ def gameover(screen: pg.Surface) -> None:
     txt = fonto.render("Game Over",True, (255, 255, 255))
     text = txt.get_rect(center=(width // 2, height // 2))
     gmover.blit(txt, text)
+
     cg_img = pg.image.load("fig/6.png")
     gm_rect = cg_img.get_rect(center=(width2 // 2, height2 // 2)) 
-    gm_rect2 = cg_img.get_rect(center=(width3 // 2, height3 // 2))   
+    gm_rect2 = cg_img.get_rect(center=(width3 // 2, height3 // 2))
+       
     gmover.blit(cg_img, gm_rect)
     gmover.blit(cg_img, gm_rect2)
     screen.blit(gmover, [0,0])
